@@ -221,18 +221,6 @@
     50% { color: #ff6347; }
     100% { color: white; }
 }
-/* Animation de déplacement latéral simple */
-@keyframes floatLeftRight {
-    0% { 
-        transform: translateX(-100vw);
-    }
-    50% {
-        transform: translateX(100vw);
-    }
-    100% { 
-        transform: translateX(-100vw);
-    }
-}
 
 /*-----------------------JS SCRIPT-----------------------*/
 .intro {
@@ -294,6 +282,8 @@ header, footer {
     font-size: 1rem;
     font-weight: bolder;
     margin: 10px 10px;
+    position: relative;
+    overflow: hidden;
 }
 
 .nav-menu li a:hover {
@@ -310,6 +300,21 @@ header, footer {
 
 .nav-menu li:hover .nav-image {
     display: block;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
 }
 
 .logo-right {
@@ -346,6 +351,8 @@ h1 {
         0 0 10px rgba(255, 255, 255, 0.5),
         0 0 15px rgba(255, 99, 71, 0.5),
         0 0 20px rgba(255, 99, 71, 0.3);
+    animation: glow 3s infinite; /* Ajoutez une animation de clignotement */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .intro {
@@ -373,6 +380,11 @@ h1 {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transition: transform 0.3s ease;
+}
+
+.container-ca:hover {
+    transform: translateY(-5px);
 }
 
 .ca {
@@ -393,13 +405,9 @@ h1 {
 }
 
 .bikbalz img {
-    animation: floatLeftRight 15s linear infinite;
     position: relative;
+    animation: float 4s ease-in-out infinite;
     transition: transform 0.3s ease;
-}
-
-.bikbalz img:hover {
-    transform: scale(1.1);
 }
 
 .achat_nonja button {
@@ -492,11 +500,11 @@ h1 {
     transition: background-color 1.5s ease;
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
-.media a img {
-    display: block;
-    transition: transform 0.3s ease;
+.media a:hover {
+    transform: scale(1.1) rotate(360deg);
 }
 
 .media a::before {
@@ -510,12 +518,13 @@ h1 {
     transition: 0.5s;
 }
 
-.media a:hover {
-    transform: scale(1.1) rotate(360deg);
-}
-
 .media a:hover::before {
     left: 100%;
+}
+
+.media a img {
+    display: block;
+    transition: transform 0.3s ease;
 }
 
 /* Nouvelles variables CSS */
@@ -573,29 +582,6 @@ body {
 
 .copy-button:hover {
     transform: scale(1.1);
-}
-
-
-
-/* Style moderne pour la navigation */
-.nav-menu li a {
-    position: relative;
-    overflow: hidden;
-}
-
-.nav-menu li a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: white;
-    transition: width 0.3s ease;
-}
-
-.nav-menu li a:hover::after {
-    width: 100%;
 }
 
 /* Effet de particules en arrière-plan */
@@ -694,59 +680,4 @@ main {
 .token-info li:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Animation du titre */
-h1 {
-    animation: glow 3s infinite;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-/* Animation des liens de navigation */
-.nav-menu li a {
-    position: relative;
-    overflow: hidden;
-}
-
-.nav-menu li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: white;
-    transition: width 0.3s ease;
-}
-
-.nav-menu li a:hover::after {
-    width: 100%;
-}
-
-/* Animation des icônes sociales */
-.media a {
-    transition: transform 0.3s ease;
-}
-
-.media a:hover {
-    transform: scale(1.2) rotate(10deg);
-}
-
-/* Animation de l'image Bik Balz */
-.bikbalz img {
-    animation: float 4s ease-in-out infinite;
-    transition: transform 0.3s ease;
-}
-
-.bikbalz img:hover {
-    transform: scale(1.1) rotate(5deg);
-}
-
-/* Animation du conteneur d'adresse */
-.container-ca {
-    transition: transform 0.3s ease;
-}
-
-.container-ca:hover {
-    transform: translateY(-5px);
 }

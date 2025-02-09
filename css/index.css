@@ -1,13 +1,174 @@
 /*--------------------MEDIA QUERIES-----------------------*/
-@media (max-width: 768px) {
+/* PC Grand écran (1920px et plus) */
+@media screen and (min-width: 1920px) {
+    .container-header {
+        max-width: 1800px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 6rem;
+    }
+
+    .intro {
+        font-size: 2rem;
+    }
+}
+/* PC Standard (1024px à 1919px) */
+@media screen and (min-width: 1024px) and (max-width: 1919px) {
+    h1 {
+        font-size: 4rem;
+    }
+
+    .intro {
+        font-size: 1.5rem;
+    }
+
+    .token-info li {
+        flex: 1 1 30%;
+    }
+}
+/* Tablette (768px à 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .intro {
+        font-size: 1.2rem;
+    }
+
+    .container-ca {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .ca {
+        font-size: 2.5vw;
+    }
+
+    .token-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .token-info li {
+        flex: 1 1 45%;
+        margin: 10px;
+    }
+
+    .nav-menu li a {
+        font-size: 0.9rem;
+        margin: 5px;
+    }
+}
+/* Mobile Large (480px à 767px) */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .intro {
+        font-size: 1rem;
+    }
+
+    .container-ca {
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .ca {
+        font-size: 3.5vw;
+    }
+
+    .token-info {
+        flex-direction: column;
+    }
+
+    .token-info li {
+        margin: 5px 0;
+    }
+
     .token-info li span {
         font-size: 1.5vw;
     }
-}
 
-@media (max-width: 480px) {
+    .nav-menu {
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        flex: 1 1 50%;
+        text-align: center;
+    }
+
+    .bikbalz img {
+        width: 150px;
+        height: 150px;
+    }
+}
+/* Mobile Petit (jusqu'à 479px) */
+@media screen and (max-width: 479px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .intro {
+        font-size: 0.9rem;
+    }
+
+    .container-ca {
+        margin: 5px;
+        padding: 8px;
+    }
+
+    .ca {
+        font-size: 4vw;
+    }
+
+    .token-info {
+        flex-direction: column;
+    }
+
+    .token-info li {
+        margin: 5px 0;
+        padding: 10px;
+    }
+
     .token-info li span {
         font-size: 2vw; 
+    }
+
+    .nav-menu {
+        flex-direction: column;
+    }
+
+    .nav-menu li {
+        margin: 5px 0;
+    }
+
+    .bikbalz img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .media {
+        gap: 10px;
+    }
+
+    .media img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .container-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo-left, .logo-right {
+        padding: 5px;
     }
 }
 
@@ -23,24 +184,6 @@
     }
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-30px);
-    }
-    60% {
-        transform: translateY(-15px);
-    }
-    70% {
-        transform: translateY(-10px);
-    }
-    90% {
-        transform: translateY(-5px);
-    }
-}
-
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -51,7 +194,7 @@
         transform: translateY(0);
     }
 }
-
+/* Animation de chute */
 @keyframes fall {
     0% {
         transform: translateY(-100vh) rotate(0deg);
@@ -60,7 +203,7 @@
         transform: translateY(200vh) rotate(360deg);
     }
 }
-
+/* Nouvelles animations */
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
@@ -72,16 +215,29 @@
     50% { box-shadow: 0 0 20px rgba(255, 99, 71, 0.8); }
     100% { box-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
 }
+/* Animation pour le texte qui change de couleur */
+@keyframes textGlow {
+    0% { color: white; }
+    50% { color: #ff6347; }
+    100% { color: white; }
+}
+/* Animation de déplacement latéral simple */
+@keyframes floatLeftRight {
+    0% { 
+        transform: translateX(-100vw);
+    }
+    50% {
+        transform: translateX(100vw);
+    }
+    100% { 
+        transform: translateX(-100vw);
+    }
+}
 
 /*-----------------------JS SCRIPT-----------------------*/
-.hidden {
-    display: none;
+.intro {
+    animation: textGlow 4s infinite;
 }
-
-.bounce {
-    animation: bounce 1s;
-}
-
 /* ----------------PRINCIPALE---------------- */
 html, body {
     position: relative;
@@ -419,215 +575,7 @@ body {
     transform: scale(1.1);
 }
 
-/* Responsive design amélioré */
-@media (max-width: 768px) {
-    .token-info {
-        flex-direction: column;
-    }
-    
-    .token-info li {
-        margin: 10px 0;
-    }
-    
-    .ca {
-        font-size: 4vw;
-    }
-}
 
-/* Media Queries */
-/* PC Grand écran (1920px et plus) */
-@media screen and (min-width: 1920px) {
-    .container-header {
-        max-width: 1800px;
-        margin: 0 auto;
-    }
-
-    h1 {
-        font-size: 6rem;
-    }
-
-    .intro {
-        font-size: 2rem;
-    }
-}
-
-/* PC Standard (1024px à 1919px) */
-@media screen and (min-width: 1024px) and (max-width: 1919px) {
-    h1 {
-        font-size: 4rem;
-    }
-
-    .intro {
-        font-size: 1.5rem;
-    }
-
-    .token-info li {
-        flex: 1 1 30%;
-    }
-}
-
-/* Tablette (768px à 1023px) */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    h1 {
-        font-size: 3rem;
-    }
-
-    .intro {
-        font-size: 1.2rem;
-    }
-
-    .container-ca {
-        margin: 10px;
-        padding: 15px;
-    }
-
-    .ca {
-        font-size: 2.5vw;
-    }
-
-    .token-info {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .token-info li {
-        flex: 1 1 45%;
-        margin: 10px;
-    }
-
-    .nav-menu li a {
-        font-size: 0.9rem;
-        margin: 5px;
-    }
-}
-
-/* Mobile Large (480px à 767px) */
-@media screen and (min-width: 480px) and (max-width: 767px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .intro {
-        font-size: 1rem;
-    }
-
-    .container-ca {
-        margin: 5px;
-        padding: 10px;
-    }
-
-    .ca {
-        font-size: 3.5vw;
-    }
-
-    .token-info {
-        flex-direction: column;
-    }
-
-    .token-info li {
-        margin: 5px 0;
-    }
-
-    .nav-menu {
-        flex-wrap: wrap;
-    }
-
-    .nav-menu li {
-        flex: 1 1 50%;
-        text-align: center;
-    }
-
-    .bikbalz img {
-        width: 150px;
-        height: 150px;
-    }
-}
-
-/* Mobile Petit (jusqu'à 479px) */
-@media screen and (max-width: 479px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    .intro {
-        font-size: 0.9rem;
-    }
-
-    .container-ca {
-        margin: 5px;
-        padding: 8px;
-    }
-
-    .ca {
-        font-size: 4vw;
-    }
-
-    .token-info {
-        flex-direction: column;
-    }
-
-    .token-info li {
-        margin: 5px 0;
-        padding: 10px;
-    }
-
-    .nav-menu {
-        flex-direction: column;
-    }
-
-    .nav-menu li {
-        margin: 5px 0;
-    }
-
-    .bikbalz img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .media {
-        gap: 10px;
-    }
-
-    .media img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .container-header {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .logo-left, .logo-right {
-        padding: 5px;
-    }
-}
-
-/* Orientation Paysage pour Mobile */
-@media screen and (max-height: 500px) and (orientation: landscape) {
-    .container-header {
-        padding: 5px;
-    }
-
-    h1 {
-        margin: 5px 0;
-    }
-
-    .bikbalz img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .token-info {
-        flex-direction: row;
-    }
-
-    .token-info li {
-        flex: 1 1 30%;
-        margin: 5px;
-        padding: 8px;
-    }
-}
 
 /* Style moderne pour la navigation */
 .nav-menu li a {
@@ -694,25 +642,14 @@ header, main, footer {
 }
 
 /* Conteneurs avec fond semi-transparent */
-.container-header,
 .container-ca,
-.token-info li,
-.container-footer {
+.token-info li{
     position: relative;
     z-index: 1;
-    background-color: rgba(148, 8, 8, 0.8);
     backdrop-filter: blur(5px);
 }
 
-/* Animation de chute */
-@keyframes fall {
-    0% {
-        transform: translateY(-100vh) rotate(0deg);
-    }
-    100% {
-        transform: translateY(200vh) rotate(360deg);
-    }
-}
+
 
 /* Assurez-vous que les éléments interactifs restent cliquables */
 button, 
@@ -732,18 +669,7 @@ main {
     background-color: transparent;
 }
 
-/* Nouvelles animations */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
 
-@keyframes glow {
-    0% { box-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
-    50% { box-shadow: 0 0 20px rgba(255, 99, 71, 0.8); }
-    100% { box-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
-}
 
 /* Animation du logo */
 .logo-left img, .logo-right img {
@@ -824,38 +750,3 @@ h1 {
 .container-ca:hover {
     transform: translateY(-5px);
 }
-
-/* Animation pour le texte qui change de couleur */
-@keyframes textGlow {
-    0% { color: white; }
-    50% { color: #ff6347; }
-    100% { color: white; }
-}
-
-.intro {
-    animation: textGlow 4s infinite;
-}
-
-/* Animation de déplacement latéral simple */
-@keyframes floatLeftRight {
-    0% { 
-        transform: translateX(-100vw);
-    }
-    50% {
-        transform: translateX(100vw);
-    }
-    100% { 
-        transform: translateX(-100vw);
-    }
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-

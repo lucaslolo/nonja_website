@@ -2,20 +2,26 @@ async function fetchTokenData() {
     try {
         const response = await fetch('https://api.dexscreener.com/latest/dex/tokens/inj1fu5u29slsg2xtsj7v5la22vl4mr4ywl7wlqeck');
         const data = await response.json();
-        const pair = data.pairs[0]; // Assurez-vous de vérifier la structure de la réponse de l'API
+        const pair = data.pairs[0];
 
-        const price = pair.priceUsd;
-        const marketCap = pair.fdv; // Fully Diluted Valuation (FDV) as a proxy for market cap
+        const priceElement = document.getElementById('token-price');
+        const marketCapElement = document.getElementById('token-marketcap');
 
-        document.getElementById('token-price').textContent = `$${price}`;
-        document.getElementById('token-marketcap').textContent = `$${Number(marketCap).toLocaleString()}`;
+        // Formatage des nombres avec la fonction formatPrice
+        if (priceElement && pair.priceUsd) {
+            animateValue(priceElement, 0, parseFloat(pair.priceUsd), 1000, formatPrice);
+        }
+        
+        if (marketCapElement && pair.fdv) {
+            animateValue(marketCapElement, 0, parseFloat(pair.fdv), 1000, formatPrice);
+        }
     } catch (error) {
         console.error('Error fetching token data:', error);
-        document.getElementById('token-price').textContent = '$0.00';   
-        document.getElementById('token-marketcap').textContent = '$0.00';
+        // Afficher une valeur par défaut en cas d'erreur
+        document.getElementById('token-price').textContent = 'N/A';
+        document.getElementById('token-marketcap').textContent = 'N/A';
     }
 }
-
 
 // Initial total supply
 const initialTotalSupply = 10000000000;
@@ -54,19 +60,118 @@ document.addEventListener('DOMContentLoaded', (event) => {
 // Fetch the token data when the page loads
 window.onload = () => {
     fetchTokenData();
+    // Rafraîchir les données toutes les 30 secondes
+    setInterval(fetchTokenData, 30000);
 };
 
+// Variable pour stocker l'intervalle normal
+let normalInterval;
+// Variable pour stocker l'intervalle rapide
+let fastInterval;
 
-// Add the bounce animation to the image when hovering over the button
-document.addEventListener('DOMContentLoaded', (event) => {
-    const button = document.getElementById('acheterNonjaButton');
-    const image = document.getElementById('bikBalzImage');
+function createFallingBalz() {
+    const container = document.querySelector('.falling-balz-container');
+    
+    function createBalz() {
+        const balz = document.createElement('div');
+        balz.classList.add('falling-balz');
+        
+        const startPositionX = Math.random() * window.innerWidth;
+        balz.style.left = startPositionX + 'px';
+        
+        const fallDuration = Math.random() * 4 + 3; // Entre 3 et 7 secondes
+        const size = Math.random() * 40 + 40;
+        
+        balz.style.width = size + 'px';
+        balz.style.height = size + 'px';
+        balz.style.animationDuration = fallDuration + 's';
+        
+        container.appendChild(balz);
+        
+        setTimeout(() => {
+            balz.remove();
+        }, fallDuration * 1000);
+    }
+    
+    // Création normale de balz (toutes les 200ms)
+    normalInterval = setInterval(createBalz, 200);
+    
+    // Création initiale de beaucoup plus de balz
+    for(let i = 0; i < 40; i++) { // Doublé de 20 à 40 balz initiaux
+        setTimeout(() => createBalz(), i * 100);
+    }
 
-    button.addEventListener('mouseover', () => {
-        image.classList.add('bounce');
+    // Ajout des événements pour le bouton Buy Nonja
+    const buyButton = document.getElementById('acheterNonjaButton');
+    if (buyButton) {
+        buyButton.addEventListener('mouseover', () => {
+            // Arrêt de l'intervalle normal
+            clearInterval(normalInterval);
+            // Création rapide de balz (toutes les 100ms)
+            fastInterval = setInterval(createBalz, 100);
+            // Création immédiate d'une pluie de balz
+            for(let i = 0; i < 60; i++) { // Augmenté de 40 à 60 pour le burst
+                setTimeout(() => createBalz(), i * 50);
+            }
+        });
+
+        buyButton.addEventListener('mouseout', () => {
+            // Arrêt de l'intervalle rapide
+            clearInterval(fastInterval);
+            // Reprise de l'intervalle normal
+            normalInterval = setInterval(createBalz, 200);
+        });
+    }
+}
+
+// Initialisation au chargement de la page
+window.addEventListener('load', createFallingBalz);
+
+// Fonction de copie améliorée
+function copyToClipboard() {
+    const address = 'inj1fu5u29slsg2xtsj7v5la22vl4mr4ywl7wlqeck';
+    navigator.clipboard.writeText(address).then(() => {
+        showToast('Adresse copiée !');
     });
+}
 
-    button.addEventListener('mouseout', () => {
-        image.classList.remove('bounce');
-    });
-});
+// Notification toast
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
+// Amélioration du formatage des prix
+function formatPrice(price) {
+    return new Intl.NumberFormat('fr-FR', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: price < 0.01 ? 8 : 2,
+        maximumFractionDigits: price < 0.01 ? 8 : 2
+    }).format(price);
+}
+
+// Animation des valeurs
+function animateValue(element, start, end, duration, formatter) {
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const current = start + (end - start) * progress;
+        element.textContent = formatter(current);
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+
+    requestAnimationFrame(update);
+}

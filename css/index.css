@@ -54,12 +54,25 @@
 
 @keyframes fall {
     0% {
-        transform: translateY(-100%);
+        transform: translateY(-100vh) rotate(0deg);
     }
     100% {
-        transform: translateY(100%);
+        transform: translateY(200vh) rotate(360deg);
     }
 }
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 99, 71, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
+}
+
 /*-----------------------JS SCRIPT-----------------------*/
 .hidden {
     display: none;
@@ -71,12 +84,14 @@
 
 /* ----------------PRINCIPALE---------------- */
 html, body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
     background-color: rgb(148, 8, 8);
     font-family: Tahoma, sans-serif;
     color: white;
     font-size: 1rem;
     height: 100%;
-    margin: 0;
     display: flex;
     flex-direction: column;
 }
@@ -125,7 +140,6 @@ header, footer {
     margin: 10px 10px;
 }
 
-
 .nav-menu li a:hover {
     color: black;
 }
@@ -147,10 +161,11 @@ header, footer {
 }
 
 main {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    background-color: transparent;
     justify-content: space-between;
-    flex: 1; /* Prend tout l'espace restant */
     padding: 10px;
 }
 
@@ -170,6 +185,11 @@ h1 {
     font-size: 4rem;
     text-align: center;
     margin-top: 10px;
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.8),
+        0 0 10px rgba(255, 255, 255, 0.5),
+        0 0 15px rgba(255, 99, 71, 0.5),
+        0 0 20px rgba(255, 99, 71, 0.3);
 }
 
 .intro {
@@ -193,6 +213,10 @@ h1 {
     padding: 20px;
     margin: 20px; 
     max-width: 100%; /* Assurez-vous que la boîte ne dépasse pas la largeur de l'écran */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 .ca {
@@ -207,10 +231,19 @@ h1 {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    overflow: visible;
+    width: 100%;
+    position: relative;
 }
 
 .bikbalz img {
+    animation: floatLeftRight 15s linear infinite;
+    position: relative;
     transition: transform 0.3s ease;
+}
+
+.bikbalz img:hover {
+    transform: scale(1.1);
 }
 
 .achat_nonja button {
@@ -228,6 +261,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
     margin: 20px auto;
     display: block;
+    animation: glow 2s infinite;
 }
 
 .achat_nonja button:hover {
@@ -242,6 +276,10 @@ h1 {
     margin: 0; /* Remove margins */
     max-width: 100%; /* Set max-width to 100% to fill the container */
     padding: 0; /* Remove padding */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 .token-info li {
@@ -261,11 +299,13 @@ h1 {
     overflow: hidden; /* Hide overflow */
     text-overflow: ellipsis; /* Add ellipsis for overflow text */
     white-space: nowrap; /* Prevent text from wrapping */
-    
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .token-info li:hover {
-    transform: translateY(-8px); /* Lift the item up on hover */
+    transform: translateY(-10px) rotateX(10deg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .token-info li span {
@@ -294,6 +334,8 @@ h1 {
     border-radius: 50%; /* Make the background circular */
     overflow: hidden; /* Ensure the image stays within the circular background */
     transition: background-color 1.5s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .media a img {
@@ -301,12 +343,519 @@ h1 {
     transition: transform 0.3s ease;
 }
 
-.media a:hover {
-    background-color: white; /* Change background color on hover */
+.media a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
 }
 
-.media a:hover img {
-    transform: scale(1.1); /* Slightly enlarge the image on hover */
+.media a:hover {
+    transform: scale(1.1) rotate(360deg);
+}
+
+.media a:hover::before {
+    left: 100%;
+}
+
+/* Nouvelles variables CSS */
+:root {
+    --primary-color: rgb(148, 8, 8);
+    --secondary-color: #ff6347;
+    --text-color: white;
+    --animation-speed: 0.3s;
+}
+
+/* Améliorations générales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #720404 100%);
+}
+
+/* Animation du bouton d'achat améliorée */
+.achat_nonja button {
+    background: linear-gradient(45deg, #ff6347, #ff0000);
+    transform: perspective(1px) translateZ(0);
+    position: relative;
+    overflow: hidden;
+}
+
+.achat_nonja button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+}
+
+.achat_nonja button:hover::before {
+    left: 100%;
+}
+
+/* Amélioration des cartes d'information */
+.token-info li {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Animation de la copie d'adresse */
+.copy-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform var(--animation-speed);
+}
+
+.copy-button:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive design amélioré */
+@media (max-width: 768px) {
+    .token-info {
+        flex-direction: column;
+    }
+    
+    .token-info li {
+        margin: 10px 0;
+    }
+    
+    .ca {
+        font-size: 4vw;
+    }
+}
+
+/* Media Queries */
+/* PC Grand écran (1920px et plus) */
+@media screen and (min-width: 1920px) {
+    .container-header {
+        max-width: 1800px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 6rem;
+    }
+
+    .intro {
+        font-size: 2rem;
+    }
+}
+
+/* PC Standard (1024px à 1919px) */
+@media screen and (min-width: 1024px) and (max-width: 1919px) {
+    h1 {
+        font-size: 4rem;
+    }
+
+    .intro {
+        font-size: 1.5rem;
+    }
+
+    .token-info li {
+        flex: 1 1 30%;
+    }
+}
+
+/* Tablette (768px à 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .intro {
+        font-size: 1.2rem;
+    }
+
+    .container-ca {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .ca {
+        font-size: 2.5vw;
+    }
+
+    .token-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .token-info li {
+        flex: 1 1 45%;
+        margin: 10px;
+    }
+
+    .nav-menu li a {
+        font-size: 0.9rem;
+        margin: 5px;
+    }
+}
+
+/* Mobile Large (480px à 767px) */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .intro {
+        font-size: 1rem;
+    }
+
+    .container-ca {
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .ca {
+        font-size: 3.5vw;
+    }
+
+    .token-info {
+        flex-direction: column;
+    }
+
+    .token-info li {
+        margin: 5px 0;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+        flex: 1 1 50%;
+        text-align: center;
+    }
+
+    .bikbalz img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Mobile Petit (jusqu'à 479px) */
+@media screen and (max-width: 479px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .intro {
+        font-size: 0.9rem;
+    }
+
+    .container-ca {
+        margin: 5px;
+        padding: 8px;
+    }
+
+    .ca {
+        font-size: 4vw;
+    }
+
+    .token-info {
+        flex-direction: column;
+    }
+
+    .token-info li {
+        margin: 5px 0;
+        padding: 10px;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+    }
+
+    .nav-menu li {
+        margin: 5px 0;
+    }
+
+    .bikbalz img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .media {
+        gap: 10px;
+    }
+
+    .media img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .container-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo-left, .logo-right {
+        padding: 5px;
+    }
+}
+
+/* Orientation Paysage pour Mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .container-header {
+        padding: 5px;
+    }
+
+    h1 {
+        margin: 5px 0;
+    }
+
+    .bikbalz img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .token-info {
+        flex-direction: row;
+    }
+
+    .token-info li {
+        flex: 1 1 30%;
+        margin: 5px;
+        padding: 8px;
+    }
+}
+
+/* Style moderne pour la navigation */
+.nav-menu li a {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+/* Effet de particules en arrière-plan */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Style pour la pluie de Balz */
+.falling-balz-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+}
+
+.falling-balz {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('../img/homepage/balz.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: fall linear infinite;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+/* Ajustement de tous les conteneurs principaux */
+header, main, footer {
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+}
+
+/* Conteneurs avec fond semi-transparent */
+.container-header,
+.container-ca,
+.token-info li,
+.container-footer {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(148, 8, 8, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+/* Animation de chute */
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(200vh) rotate(360deg);
+    }
+}
+
+/* Assurez-vous que les éléments interactifs restent cliquables */
+button, 
+a, 
+.nav-menu,
+.media a,
+.achat_nonja button {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ajustement pour le contenu principal */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+/* Nouvelles animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 99, 71, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
+}
+
+/* Animation du logo */
+.logo-left img, .logo-right img {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Animation du bouton Buy Nonja */
+.achat_nonja button {
+    animation: glow 2s infinite;
+    transition: transform 0.3s ease;
+}
+
+.achat_nonja button:hover {
+    transform: scale(1.1);
+}
+
+/* Animation des cartes token-info */
+.token-info li {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.token-info li:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation du titre */
+h1 {
+    animation: glow 3s infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Animation des liens de navigation */
+.nav-menu li a {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+/* Animation des icônes sociales */
+.media a {
+    transition: transform 0.3s ease;
+}
+
+.media a:hover {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Animation de l'image Bik Balz */
+.bikbalz img {
+    animation: float 4s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.bikbalz img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Animation du conteneur d'adresse */
+.container-ca {
+    transition: transform 0.3s ease;
+}
+
+.container-ca:hover {
+    transform: translateY(-5px);
+}
+
+/* Animation pour le texte qui change de couleur */
+@keyframes textGlow {
+    0% { color: white; }
+    50% { color: #ff6347; }
+    100% { color: white; }
+}
+
+.intro {
+    animation: textGlow 4s infinite;
+}
+
+/* Animation de déplacement latéral simple */
+@keyframes floatLeftRight {
+    0% { 
+        transform: translateX(-100vw);
+    }
+    50% {
+        transform: translateX(100vw);
+    }
+    100% { 
+        transform: translateX(-100vw);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
 

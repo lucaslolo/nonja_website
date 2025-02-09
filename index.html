@@ -3,12 +3,15 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>NONJA</title>
         <link rel="stylesheet" href="css/index.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+        <meta name="description" content="Nonja - Le memecoin le plus degen sur Injective">
     </head>
 
     <body>
+        <div class="falling-balz-container"></div>
         <header>
             <div class= "container-header">
     
@@ -40,7 +43,10 @@
                 <p class="intro">Nonja is the most degen memecoin on Injective with bik balz.</p>
 
                 <div class="container-ca">
-                    <p class="ca">ca :inj1fu5u29slsg2xtsj7v5la22vl4mr4ywl7wlqeck</p>
+                    <p class="ca">
+                        <span class="label">Contract Address:</span>
+                        <span class="address">inj1fu5u29slsg2xtsj7v5la22vl4mr4ywl7wlqeck</span>
+                    </p>
                 </div>
 
                 <div class="container-achat">
@@ -55,7 +61,7 @@
                 
                 <ul class="token-info">
                     <li>
-                        <span>Market Cap</span>
+                        <span>Price</span>
                         <div id="token-price"></div>
                     </li>
                     <li>
@@ -92,6 +98,14 @@
                 </ul>
         </footer>
 
+        <div class="particles" id="particles-js"></div>
+
         <script src="js/index.js"></script>
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <script>
+            particlesJS.load('particles-js', 'assets/particles.json', function() {
+                console.log('particles.js loaded');
+            });
+        </script>
     </body>
 </html>

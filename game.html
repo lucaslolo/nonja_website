@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NONJA.GAME</title>
+    <link rel="stylesheet" href="css/game.css">
+</head>
+
+<body>
+    <header>
+        <div class="container-header">
+            <div class="logo-left">
+                <img src="img/homepage/logo_round_left.png" alt="logo nonja left" width="50" height="50">
+            </div>
+            <nav class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">HOME</a><span class="nav-image"><img src="img/homepage/balz.png" alt="balz image" width="25" height="25"></span></li>
+                    <li><a href="nft.html">NFT</a><span class="nav-image"><img src="img/homepage/balz.png" alt="balz image" width="25" height="25"></span></li>
+                    <li><a href="faq.html">FAQ</a><span class="nav-image"><img src="img/homepage/balz.png" alt="balz image" width="25" height="25"></span></li>
+                    <li><a style="color: black;">GAME</a></li>
+                </ul>
+            </nav>
+            
+            <div class="logo-right">
+                <img src="img/homepage/logo_round_right.png" alt="logo nonja right" width="50" height="50">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="game-section">
+            <h2>Game 1: HOT OR COLD</h2>
+            <p>Guess the number between 1 and 10 to win!</p>
+            <input type="number" id="guess-input" min="1" max="10" placeholder="Enter a number">
+            <button id="guess-button">OK</button>
+            <p id="result-message"></p>
+        </section>
+
+        <section class="mine-game-section" style="display: none;">
+            <h2>Game 2: MINE</h2>
+            <p>Click on all the cells except the bomb to win!</p>
+            <div id="mine-grid" class="mine-grid"></div>
+            <p id="mine-result-message"></p>
+        </section>
+
+        <section class="tower-section" style="display: none;">
+            <h2>Game 3: Dragon Tower</h2>
+            <p>Avoid the bomb and reach the top!</p>
+            <div class="grid" id="tower-grid"></div>
+            <p id="message"></p>
+        </section>
+    </main>
+    
+    <footer>
+        <ul class="container-footer">
+            <li>&copy; 2025 Nonja.</li>
+            <li> </li>
+            <li>TS-honey</li>
+        </ul>
+    </footer>
+
+    <script src="js/game.js"></script>
+</body>
+
+</html>

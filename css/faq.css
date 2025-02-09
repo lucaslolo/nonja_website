@@ -1,0 +1,140 @@
+/* ----------------PRINCIPALE---------------- */
+html, body {
+    background-color: rgb(148, 8, 8);
+    font-family: Tahoma, sans-serif;
+    color: white;
+    font-size: 1rem;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    background-color: rgb(148, 8, 8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 50px; /* Hauteur fixe de 50px pour header et footer */
+}
+
+.container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo-left {
+    padding-left: 10px;
+}
+
+.nav-container {
+    flex-grow: 1; /* a quoi ca sert ? */
+}
+
+.nav-menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    position: relative; /* a quoi ca sert ?*/
+}
+
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bolder;
+    margin: 10px 10px;
+}
+
+
+.nav-menu li a:hover {
+    color: black;
+}
+
+.nav-image {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-menu li:hover .nav-image {
+    display: block;
+}
+
+.logo-right {
+    padding-right: 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1; /* Prend tout l'espace restant */
+    padding: 10px;
+}
+
+.container-footer {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0 20px;
+    width: 100%;
+}
+/*----------------------------------------------*/
+
+.nft-faq {
+    padding: 20px;
+    background-image: url('../img/homepage/background4.png'); /* Assurez-vous que le chemin est correct */
+    background-size: cover; /* Pour couvrir toute la boîte */
+    background-position: center; /* Centrer l'image */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.nft-faq {
+    flex: 1 1 45%; /* Adjust the width of each section */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    padding: 20px; /* Add padding inside the boxes */
+    margin: 10px; /* Add margin between items */
+}
+
+.nft-faq h2 {
+    color: rgb(148, 8, 8);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+
+.nft-faq h4 {
+    color: #1814ee;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.nft-faq p {
+    color: white;
+}
+
+.nft-faq li{
+    color: green;
+}
+.nft-faq h4 {
+    color: #e724d7;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}

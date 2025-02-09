@@ -1,0 +1,224 @@
+html, body {
+    background-color: rgb(148, 8, 8);
+    font-family: Tahoma, sans-serif;
+    color: white;
+    font-size: 1rem;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    background-color: rgb(148, 8, 8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 50px; /* Hauteur fixe de 50px pour header et footer */
+}
+
+.container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo-left {
+    padding-left: 10px;
+}
+
+.nav-container {
+    flex-grow: 1; /* a quoi ca sert ? */
+}
+
+.nav-menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    position: relative; /* a quoi ca sert ?*/
+}
+
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bolder;
+    margin: 10px 10px;
+}
+
+
+.nav-menu li a:hover {
+    color: black;
+}
+
+.nav-image {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-menu li:hover .nav-image {
+    display: block;
+}
+
+.logo-right {
+    padding-right: 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1; /* Prend tout l'espace restant */
+    padding: 10px;
+}
+
+.container-footer {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0 20px;
+    width: 100%;
+}
+/*-----------------------------------------------------------------*/
+
+.game-section {
+    background-image: url('../img/homepage/background4.png'); /* Assurez-vous que le chemin est correct */
+    background-size: cover; /* Pour couvrir toute la boîte */
+    background-position: center; /* Centrer l'image */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+p {
+    color: rgb(148, 8, 8);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/*------------------------JEU 1 ----------------------------*/
+input#guess-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button#guess-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button#guess-button:hover {
+    background-color: #218838;
+}
+
+#result-message {
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+/*.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}*/
+
+/*---------------------------------- JEU 2 ---------------------------*/
+.mine-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 5px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.mine-cell {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #999;
+    font-size: 1.2rem;
+}
+
+.mine-cell.clicked {
+    background-color: #eee;
+    cursor: default;
+}
+
+.mine-cell.bomb {
+    background-color: red;
+    color: white;
+}
+
+/*---------------------------------- JEU 3 ---------------------------*/
+
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    grid-template-rows: repeat(9, 50px);
+    gap: 5px;
+    margin: 20px auto;
+    width: fit-content;
+}
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.cell.clicked {
+    background-color: lightblue;
+}
+.cell.start {
+    background-color: green;
+    color: white;
+}
+.cell.end {
+    background-color: gold;
+    color: black;
+}

@@ -1,115 +1,8 @@
-/*--------------------MEDIA QUERIES-----------------------*/
-/* PC Grand écran (1920px et plus) */
-@media screen and (min-width: 1920px) {
-    .container-header {
-        max-width: 1800px;
-        margin: 0 auto;
+/* Mobile Petit (jusqu'à 479px)*/
+@media screen and (max-width: 450px) {
+    .logo-left, .logo-right {
+        display: none;
     }
-
-    h1 {
-        font-size: 6rem;
-    }
-
-    .intro {
-        font-size: 2rem;
-    }
-}
-/* PC Standard (1024px à 1919px) */
-@media screen and (min-width: 1024px) and (max-width: 1919px) {
-    h1 {
-        font-size: 4rem;
-    }
-
-    .intro {
-        font-size: 1.5rem;
-    }
-
-    .token-info li {
-        flex: 1 1 30%;
-    }
-}
-/* Tablette (768px à 1023px) */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    h1 {
-        font-size: 3rem;
-    }
-
-    .intro {
-        font-size: 1.2rem;
-    }
-
-    .container-ca {
-        margin: 10px;
-        padding: 15px;
-    }
-
-    .ca {
-        font-size: 2.5vw;
-    }
-
-    .token-info {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .token-info li {
-        flex: 1 1 45%;
-        margin: 10px;
-    }
-
-    .nav-menu li a {
-        font-size: 0.9rem;
-        margin: 5px;
-    }
-}
-/* Mobile Large (480px à 767px) */
-@media screen and (min-width: 480px) and (max-width: 767px) {
-
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .intro {
-        font-size: 1rem;
-    }
-
-    .container-ca {
-        margin: 5px;
-        padding: 10px;
-    }
-
-    .ca {
-        font-size: 3.5vw;
-    }
-
-    .token-info {
-        flex-direction: column;
-    }
-
-    .token-info li {
-        margin: 5px 0;
-    }
-
-    .token-info li span {
-        font-size: 1.5vw;
-    }
-
-    .nav-menu {
-        flex-wrap: wrap;
-    }
-
-    .nav-menu li {
-        flex: 1 1 50%;
-        text-align: center;
-    }
-
-    .bikbalz img {
-        width: 150px;
-        height: 150px;
-    }
-}
-/* Mobile Petit (jusqu'à 479px) */
-@media screen and (max-width: 479px) {
     h1 {
         font-size: 2rem;
     }
@@ -140,14 +33,6 @@
         font-size: 2vw; 
     }
 
-    .nav-menu {
-        flex-direction: column;
-    }
-
-    .nav-menu li {
-        margin: 5px 0;
-    }
-
     .bikbalz img {
         width: 100px;
         height: 100px;
@@ -162,7 +47,7 @@
         height: 40px;
     }
 
-    .container-header {
+    .header {
         flex-direction: column;
         gap: 10px;
     }
@@ -242,17 +127,15 @@ html, body {
 }
 
 header, footer {
-    background-color: rgb(148, 8, 8);
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 0 0 50px; /* Hauteur fixe de 50px pour header et footer */
 }
 
-.container-header {
+.header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 10px;
 }
 

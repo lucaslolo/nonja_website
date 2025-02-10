@@ -161,8 +161,8 @@ let x = 0;
 let direction = 1; // 1 = droite, -1 = gauche
 
 function animate() {
-    x += 0.3 * direction; // Vitesse du déplacement avec direction
-    let y = Math.sin(x * 0.2) * 30; // 30px d'amplitude
+    x += 0.7 * direction; // Vitesse du déplacement avec direction
+    let y = Math.sin(x * 0.1) * 30; // 30px d'amplitude
 
     // Appliquer la transformation (déplacement + rotation)
     img.style.transform = `translateX(${-200 + x}px) translateY(${y}px) scaleX(${direction})`;

@@ -1,9 +1,5 @@
 /* Mobile Petit (jusqu'à 479px)*/
 @media screen and (max-width: 450px) {
-    
-    .logo-left{
-        display: none;
-    }
     h1 {
         font-size: 2rem;
     }

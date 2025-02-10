@@ -13,23 +13,83 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 530px) {
     .nft-item {
         flex: 1 1 calc((100% / 3) - (10px * 2)); /* 4 items per row with margin */
         max-width: calc((100% / 3) - (10px * 2)); /* Ensure max-width is the same as flex-basis */
     }
+    #nft-placeholder {
+        width: 200px;
+    }
+}
+/* ----------------key FRAMES---------------- */
+@keyframes crazyAnimation {
+    0% {
+        opacity: 1;
+        color : black;
+    }
+    50% {
+        opacity: 1;
+        color:red;
+    }
+    100% {
+        opacity: 1;
+        color: black;
+    }
+}
+/* Animation de chute */
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(200vh) rotate(360deg);
+    }
 }
 
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 /* ----------------PRINCIPALE---------------- */
+.falling-balz-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+}
+
+.falling-balz {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('../img/homepage/balz.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: fall linear infinite;
+    opacity: 0.8;
+    z-index: 0;
+}
+
 html, body {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     background-color: rgb(170, 9, 9);
-    /*background: url('/img/homepage/background2.jpg');
-    background-size: cover;  Assure que l'image couvre toute la surface
-    background-position: center;  Centre l'image
-    background-repeat: no-repeat; Empêche la répétition de l'image */
-    
     color: white;
     margin: 0;
     min-height: 100vh;
@@ -115,7 +175,6 @@ header, footer {
 main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     flex: 1; /* Prend tout l'espace restant */
     padding: 10px;
 }
@@ -128,45 +187,32 @@ main {
     width: 100%;
 }
 /*--------------------------------------------------*/
-.nft-description {
-    padding: 20px;
-    background-image: url('../img/homepage/background4.png'); /* Assurez-vous que le chemin est correct */
-    background-size: cover; /* Pour couvrir toute la boîte */
-    background-position: center; /* Centrer l'image */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+
+h1 {
+    font-size: 4rem;
+    text-align: center;
+    margin-top: 10px;
+    animation: crazyAnimation 3s infinite;
+    margin: 0;
 }
 
-.nft-description h2 {
-    color: rgb(148, 8, 8);
-    font-size: 2rem;
-    margin-bottom: 10px;
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+#nft-placeholder{
+    display: block;
+    justify-content: center; /* Center the filter options */
+    flex-wrap: wrap;
+    gap: 10px; /* Space between filter options */
+    margin: 20px auto; /* Margin around the filter options */
+    max-width: 600px;
 }
-
-.nft-description h3 {
-    color: #1814ee;
-    font-size: 1.5rem;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.nft-description p {
-    color: white;
-}
-
-.nft-description li {
-    color: green;
-}
-
 .nft-collection {
     display: flex;
     flex-wrap: wrap;
-    justify-content: fle; /* Align items at the start of the line */
+    justify-content: flex-start; /* Align items at the start of the line */
     width: 75%; /* Ensure the container takes the full width */
     max-width: 1200px; /* Optional: Set a max width for the container */
     margin: 0 auto; /* Center the container itself */
+    position: relative;
+    z-index: 1;
 }
 
 .nft-item {
@@ -179,6 +225,11 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
     min-width: auto;
     margin: 10px;
+    display: none; /* n affiche pas les items */
+}
+
+.nft-item.animate {
+    animation: popIn 2s ease-out forwards;
 }
 
 .nft-item img {
@@ -206,6 +257,8 @@ main {
     flex-wrap: wrap;
     gap: 10px; /* Space between filter options */
     margin: 20px 0; /* Margin around the filter options */
+    position: relative;
+    z-index: 1;
 }
 
 .filter-options label {

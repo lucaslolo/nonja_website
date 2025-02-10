@@ -91,6 +91,35 @@ main {
     width: 100%;
 }
 /*----------------------------------------------*/
+.nft-description {
+    padding: 20px;
+    background-color: red;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.nft-description h2 {
+    color: rgb(148, 8, 8);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+
+.nft-description h3 {
+    color: #1814ee;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.nft-description p {
+    color: white;
+}
+
+.nft-description li {
+    color: green;
+}
 
 .nft-faq {
     padding: 20px;

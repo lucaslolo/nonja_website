@@ -57,6 +57,35 @@ document.addEventListener('DOMContentLoaded', (event) => {
     animateTotalSupply(1000000000, newTotalSupply, 3500); // Animate over 3.5 seconds
 });
 
+// Animation des valeurs
+function animateValue(element, start, end, duration, formatter) {
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const current = start + (end - start) * progress;
+        element.textContent = formatter(current);
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+// Amélioration du formatage des prix
+function formatPrice(price) {
+    return new Intl.NumberFormat('fr-FR', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: price < 0.01 ? 8 : 2,
+        maximumFractionDigits: price < 0.01 ? 8 : 2
+    }).format(price);
+}
+
 // Fetch the token data when the page loads
 window.onload = () => {
     fetchTokenData();
@@ -127,34 +156,6 @@ function createFallingBalz() {
 // Initialisation au chargement de la page
 window.addEventListener('load', createFallingBalz);
 
-// Amélioration du formatage des prix
-function formatPrice(price) {
-    return new Intl.NumberFormat('fr-FR', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: price < 0.01 ? 8 : 2,
-        maximumFractionDigits: price < 0.01 ? 8 : 2
-    }).format(price);
-}
-
-// Animation des valeurs
-function animateValue(element, start, end, duration, formatter) {
-    const startTime = performance.now();
-    
-    function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        const current = start + (end - start) * progress;
-        element.textContent = formatter(current);
-
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        }
-    }
-
-    requestAnimationFrame(update);
-}
 
 const img = document.getElementById("bikBalzImage");
 let x = 0;

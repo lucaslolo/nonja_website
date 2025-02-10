@@ -127,26 +127,6 @@ function createFallingBalz() {
 // Initialisation au chargement de la page
 window.addEventListener('load', createFallingBalz);
 
-// Fonction de copie améliorée
-function copyToClipboard() {
-    const address = 'inj1fu5u29slsg2xtsj7v5la22vl4mr4ywl7wlqeck';
-    navigator.clipboard.writeText(address).then(() => {
-        showToast('Adresse copiée !');
-    });
-}
-
-// Notification toast
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-        toast.remove();
-    }, 3000);
-}
-
 // Amélioration du formatage des prix
 function formatPrice(price) {
     return new Intl.NumberFormat('fr-FR', {

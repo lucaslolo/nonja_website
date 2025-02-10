@@ -120,14 +120,11 @@ header, footer {
 }
 
 /*-------------------NAVIGATION-------------------*/
-.nav-container {
-    flex-grow: 1; /* a quoi ca sert ? */
-}
-
 .nav-menu {
     list-style-type: none;
     display: flex;
     justify-content: center;
+    flex-grow: 1; /* a quoi ca sert ? */
     width: 100%;
     margin: 0;
     padding: 0;

@@ -20,88 +20,72 @@
     }
 }
 
-
-/*-------------------ANIMATION------------------------*/
-
-.anft :hover{
-    color: rgba(43, 40, 40, 0.267);
-}
-
-.og_nft :hover{
-    color: rgba(44, 44, 42, 0.267);
-}
-
-.one_one :hover{
-    color: rgba(87, 9, 126, 0.596);
-}
-
-.custom :hover{
-    color: rgba(40, 43, 43, 0.267);
-}
-
-.nav-menu li:hover .nav-image {
-    display: block;
-}
-
 /* ----------------PRINCIPALE---------------- */
 html, body {
-    background-color: rgb(148, 8, 8);
-    font-family: Tahoma, sans-serif;
-    color: white;
+    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
-    height: 100%;
+    background-color: rgb(170, 9, 9);
+    /*background: url('/img/homepage/background2.jpg');
+    background-size: cover;  Assure que l'image couvre toute la surface
+    background-position: center;  Centre l'image
+    background-repeat: no-repeat; Empêche la répétition de l'image */
+    
+    color: white;
     margin: 0;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 header, footer {
-    background-color: rgb(148, 8, 8);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex: 0 0 50px; /* Hauteur fixe de 50px pour header et footer */
 }
 
-.container-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-.logo-left {
-    padding-left: 10px;
-}
-
-.nav-container {
-    flex-grow: 1; /* a quoi ca sert ? */
-}
-
+/*-------------------NAVIGATION-------------------*/
 .nav-menu {
     list-style-type: none;
     display: flex;
     justify-content: center;
+    flex-grow: 1; /* a quoi ca sert ? */
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
 .nav-menu li {
-    position: relative; /* a quoi ca sert ?*/
+    position: relative;
 }
 
 .nav-menu li a {
-    color: white;
+    color:white;
     text-decoration: none;
     font-size: 1rem;
     font-weight: bolder;
     margin: 10px 10px;
+    position: relative;
 }
-
 
 .nav-menu li a:hover {
     color: black;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
 }
 
 .nav-image {
@@ -112,8 +96,20 @@ header, footer {
     transform: translateX(-50%);
 }
 
+.nav-menu li:hover .nav-image {
+    display: block;
+}
+
+.logo-left {
+    padding-left: 10px;
+}
+
 .logo-right {
     padding-right: 10px;
+}
+
+.logo-left img, .logo-right img {
+    animation: float 3s ease-in-out infinite;
 }
 
 main {
@@ -132,8 +128,6 @@ main {
     width: 100%;
 }
 /*--------------------------------------------------*/
-
-
 .nft-description {
     padding: 20px;
     background-image: url('../img/homepage/background4.png'); /* Assurez-vous que le chemin est correct */
@@ -164,73 +158,6 @@ main {
 
 .nft-description li {
     color: green;
-}
-
-.filter-options {
-    display: flex;
-    justify-content: center; /* Center the filter options */
-    flex-wrap: wrap;
-    gap: 10px; /* Space between filter options */
-    margin: 20px 0; /* Margin around the filter options */
-}
-
-.filter-options label {
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.filter-options label[for="anft"] {
-    background-color: black;
-    color: white;
-}
-.filter-options input[type="checkbox"]:checked + label[for="anft"] {
-    background-color: red; /* Couleur plus foncée pour ANFT */
-    color:black
-}
-
-.filter-options label[for="og_nft"] {
-    background-color: black;
-    color: white;
-}
-.filter-options input[type="checkbox"]:checked + label[for="og_nft"] {
-    background-color: gold; /* Couleur plus foncée pour OG */
-    color:black;
-}
-
-
-.filter-options label[for="one_one"] {
-    background-color: black;
-    color: white;;
-}
-.filter-options input[type="checkbox"]:checked + label[for="one_one"] {
-    background-color: purple; /* Couleur plus foncée pour 1/1 */
-    color:black;
-}
-
-
-.filter-options label[for="custom"] {
-    background-color: black;
-    color: white;
-}
-.filter-options input[type="checkbox"]:checked + label[for="custom"] {
-    background-color: lightskyblue; /* Couleur plus foncée pour CUSTOM */
-    color:black;
-}
-
-
-.filter-options label[for="dead_nft"] {
-    background-color: black;
-    color: white;
-}
-.filter-options input[type="checkbox"]:checked + label[for="dead_nft"] {
-    background-color: white; /* Couleur plus foncée pour DEAD */
-    color:black;
-}
-
-.filter-options input[type="checkbox"] {
-    display: none; /* Hide the default checkbox */
 }
 
 .nft-collection {
@@ -273,25 +200,25 @@ main {
     color: black;
 }
 
-.anft{
-    background-color: red;
+.filter-options {
+    display: flex;
+    justify-content: center; /* Center the filter options */
+    flex-wrap: wrap;
+    gap: 10px; /* Space between filter options */
+    margin: 20px 0; /* Margin around the filter options */
 }
 
-.og_nft{
-    background-color: gold;
+.filter-options label {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+/*-------------------------ALL-------------------------*/
+.filter-options input[type="checkbox"] {
+    display: none; /* Hide the default checkbox */
 }
 
-.one_one{
-    background-color: purple;
-}
-
-.custom{
-    background-color: lightskyblue;
-}
-
-.dead_nft{
-    background-color: white;
-}
 
 .filter-options label[for="all"] {
     background-color: black;
@@ -300,4 +227,76 @@ main {
 .filter-options input[type="checkbox"]:checked + label[for="all"] {
     background: linear-gradient(45deg, red, gold, purple, lightskyblue, white);
     color: black;
+}
+/*-------------------------ANFT-------------------------*/
+.anft{
+    background-color: red;
+}
+.anft :hover{
+    color: rgba(43, 40, 40, 0.267);
+}
+.filter-options label[for="anft"] {
+    background-color: black;
+    color: white;
+}
+.filter-options input[type="checkbox"]:checked + label[for="anft"] {
+    background-color: red; /* Couleur plus foncée pour ANFT */
+    color:black
+}
+/*-------------------------OG-------------------------*/
+.og_nft{
+    background-color: gold;
+}
+.og_nft :hover{
+    color: rgba(44, 44, 42, 0.267);
+}
+.filter-options label[for="og_nft"] {
+    background-color: black;
+    color: white;
+}
+.filter-options input[type="checkbox"]:checked + label[for="og_nft"] {
+    background-color: gold; /* Couleur plus foncée pour OG */
+    color:black;
+}
+/*-------------------------ONE_ONE-------------------------*/
+.one_one{
+    background-color: purple;
+}
+.one_one :hover{
+    color: rgba(87, 9, 126, 0.596);
+}
+.filter-options label[for="one_one"] {
+    background-color: black;
+    color: white;;
+}
+.filter-options input[type="checkbox"]:checked + label[for="one_one"] {
+    background-color: purple; /* Couleur plus foncée pour 1/1 */
+    color:black;
+}
+/*-------------------------CUSTOM-------------------------*/
+.custom{
+    background-color: lightskyblue;
+}
+.custom :hover{
+    color: rgba(40, 43, 43, 0.267);
+}
+.filter-options label[for="custom"] {
+    background-color: black;
+    color: white;
+}
+.filter-options input[type="checkbox"]:checked + label[for="custom"] {
+    background-color: lightskyblue; /* Couleur plus foncée pour CUSTOM */
+    color:black;
+}
+/*-------------------------DEAD-------------------------*/
+.dead_nft{
+    background-color: white;
+}
+.filter-options label[for="dead_nft"] {
+    background-color: black;
+    color: white;
+}
+.filter-options input[type="checkbox"]:checked + label[for="dead_nft"] {
+    background-color: white; /* Couleur plus foncée pour DEAD */
+    color:black;
 }

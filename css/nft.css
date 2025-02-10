@@ -28,9 +28,25 @@
         opacity: 1;
         color : black;
     }
-    50% {
+    15% {
         opacity: 1;
         color:red;
+    }
+    30% {
+        opacity: 1;
+        color:gold;
+    }
+    45% {
+        opacity: 1;
+        color:lightblue;
+    }
+    60% {
+        opacity: 1;
+        color:purple;
+    }
+    80% {
+        opacity: 1;
+        color:white;
     }
     100% {
         opacity: 1;

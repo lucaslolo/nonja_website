@@ -93,8 +93,8 @@ function createFallingBalz() {
         }, fallDuration * 1000);
     }
     
-    // Création normale de balz (toutes les 200ms)
-    normalInterval = setInterval(createBalz, 200);
+    // Création normale de balz (toutes les 50ms)
+    normalInterval = setInterval(createBalz, 50);
     
     // Création initiale de beaucoup plus de balz
     for(let i = 0; i < 40; i++) { // Doublé de 20 à 40 balz initiaux
@@ -108,7 +108,7 @@ function createFallingBalz() {
             // Arrêt de l'intervalle normal
             clearInterval(normalInterval);
             // Création rapide de balz (toutes les 100ms)
-            fastInterval = setInterval(createBalz, 100);
+            fastInterval = setInterval(createBalz, 50);
             // Création immédiate d'une pluie de balz
             for(let i = 0; i < 60; i++) { // Augmenté de 40 à 60 pour le burst
                 setTimeout(() => createBalz(), i * 50);
@@ -119,7 +119,7 @@ function createFallingBalz() {
             // Arrêt de l'intervalle rapide
             clearInterval(fastInterval);
             // Reprise de l'intervalle normal
-            normalInterval = setInterval(createBalz, 200);
+            normalInterval = setInterval(createBalz, 50);
         });
     }
 }

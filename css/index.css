@@ -89,7 +89,20 @@
     100% { box-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
 }
 
-
+@keyframes crazyAnimation {
+    0% {
+        opacity: 1;
+        color : black;
+    }
+    50% {
+        opacity: 1;
+        color:red;
+    }
+    100% {
+        opacity: 1;
+        color: black;
+    }
+}
 
 html, body {
     font-family: 'Poppins', sans-serif;
@@ -199,18 +212,13 @@ main {
 }
 
 /*----------------------------------------------------------------*/
-
 h1 {
-    color: black;
     font-size: 4rem;
     text-align: center;
     margin-top: 10px;
-    text-shadow: 
-        0 0 5px rgba(255, 255, 255, 0.8),
-        0 0 10px rgba(255, 255, 255, 0.5),
-        0 0 15px rgba(255, 99, 71, 0.5),
-        0 0 20px rgba(255, 99, 71, 0.3);
+    animation: crazyAnimation 3s infinite;
 }
+
 
 .intro {
     animation: fadeInUp 3s ease-out;
@@ -281,6 +289,7 @@ h1 {
 .achat_nonja button:hover {
     color: black; /* Tomato red background color on hover */
     transform: translateY(-5px) scale(1.2); /* Lift the button up on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .achat_nonja button::before {
@@ -315,17 +324,16 @@ h1 {
     list-style: none;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
-    flex: 1 1 30%; /* Ensure each box takes up equal space */
-    margin: 10px; /* Add margin between items */
-    padding: 20px; /* Add padding inside the boxes */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow text */
-    white-space: nowrap; /* Prevent text from wrapping */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex: 1 1 30%;
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     transform-style: preserve-3d;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effect */
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.3s ease;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.1);
     border: 3px solid rgba(255, 255, 255, 0.2);
@@ -334,6 +342,7 @@ h1 {
 .token-info li:hover {
     transform: translateY(-10px) rotateX(30deg);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .token-info li span {
